@@ -10,16 +10,17 @@ import SnapKit
 
 final class DetailViewController: UIViewController {
     
-    private let tableView = UITableView()
+    private var commits = Database.shared.commits
     private var model: TableReposModel?
-    var data = [TableReposModel]()
     
     //MARK: - Properties
-    private let containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = colorTabel
-//        view.layer.cornerRadius = 10
-//        view.layer.masksToBounds = true
+    private let tableView: UITableView = {
+       let table = UITableView()
+        return table
+    }()
+    
+    private let containerView: UITableViewHeaderFooterView = {
+        let view = UITableViewHeaderFooterView()
         return view
     }()
     
@@ -53,16 +54,6 @@ final class DetailViewController: UIViewController {
                         color: .darkGray,
                         textAlignment: .left,
                         ofLine: 1
-        )
-        return label
-    }()
-    
-    private let descriptLabel: CustomLabel = {
-        let label = CustomLabel()
-        label.configure(with: .systemFont(ofSize: 16),
-                        color: .black,
-                        textAlignment: .left,
-                        ofLine: 0
         )
         return label
     }()
@@ -106,6 +97,16 @@ final class DetailViewController: UIViewController {
         return label
     }()
     
+    private let descriptLabel: CustomLabel = {
+        let label = CustomLabel()
+        label.configure(with: .systemFont(ofSize: 16),
+                        color: .black,
+                        textAlignment: .left,
+                        ofLine: 0
+        )
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = colorTabel
@@ -113,7 +114,6 @@ final class DetailViewController: UIViewController {
         initialize()
         setStack()
         setTableView()
-        
         setDataView(with: model)
     }
     
@@ -125,6 +125,13 @@ final class DetailViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")
+        tableView.backgroundColor = colorTabel
+        tableView.separatorStyle = .none
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func setDataView(with model: TableReposModel?) {
@@ -137,7 +144,7 @@ final class DetailViewController: UIViewController {
         starLabel.text = "\(model?.star ?? 0) stars"
     }
     
-    func set(model: TableReposModel) {
+    func getData(model: TableReposModel) {
         self.model = model
     }
     
@@ -148,15 +155,29 @@ final class DetailViewController: UIViewController {
     }
 }
 
+//MARK: - Create table
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return commits.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        return UITableViewCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell", for: indexPath) as? DetailTableViewCell {
+            cell.setCell(model: commits[indexPath.row])
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = containerView
+        return header
     }
 }
 
@@ -176,18 +197,11 @@ extension DetailViewController {
         containerView.addSubview(forkLabel)
         containerView.addSubview(starLabel)
         containerView.addSubview(descriptLabel)
-        view.addSubview(containerView)
     }
     
     func setConstraints() {
-        //MARK: - Set owner view
-        containerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(150)
-            make.bottom.equalTo(descriptLabel.snp.bottom).offset(10)
-            make.leading.equalToSuperview().inset(3)
-            make.trailing.equalToSuperview().inset(3)
-        }
         
+        //MARK: - Header content constraints
         imagesView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
@@ -211,7 +225,7 @@ extension DetailViewController {
             make.top.equalTo(imagesView.snp.bottom).offset(10)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(descriptLabel.snp.top).inset(-15)
+            make.bottom.equalTo(descriptLabel.snp.top).offset(-15)
         }
         
         languageLabel.snp.makeConstraints { make in

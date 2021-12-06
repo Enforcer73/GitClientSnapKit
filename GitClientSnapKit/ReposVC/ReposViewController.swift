@@ -11,24 +11,8 @@ import SnapKit
 final class ReposViewController: UIViewController {
     
     private let tableView = UITableView()
+    private var data = Database.shared.data
     private var reposData: TableReposModel?
-        
-    private var data = [
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwrw wetdgsdf gsdf hjjh hj jhjkk h kh khkwrwrwe wr wr wrwrwerwrgfdhdh hk rwerwjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1),
-        TableReposModel(image: UIImage(named: "valak"), login: "Enforcer", nameContent: "lesson", descript: "terwtwertew ertwertwetdgsdfgsdf hjjh hj jhjkkhkh khkhkjhhkjh", language: "swift", fork: 1, star: 2),
-        TableReposModel(image: UIImage(named: "ava"), login: "GitHub", nameContent: "app", descript: "ertwertwetdgsdfgsdf", language: "ruby", fork: 3, star: 1)
-        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,12 +59,6 @@ final class ReposViewController: UIViewController {
         navigationItem.leftBarButtonItem = signOutButton
         navigationItem.rightBarButtonItem = goButton
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let detailVC = segue.destination as? DetailViewController {
-//            detailVC.set(model: reposData)
-//        }
-//    }
 }
 
 //MARK: - Table
@@ -104,7 +82,7 @@ extension ReposViewController: UITableViewDelegate, UITableViewDataSource {
         let detailVC = DetailViewController()
         
         guard let reposData = reposData else { return }
-        detailVC.set(model: reposData)
+        detailVC.getData(model: reposData)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -194,12 +194,9 @@ extension LoginViewController {
         let tabBarVC = TabBarController()
         tabBarVC.modalPresentationStyle = .fullScreen
         present(tabBarVC, animated: true, completion: nil)
-        
-        print("tabBarVC")
     }
     
     @objc private func tappedSwitch() {
         signup = !signup
-        print("Reg/Auth")
     }
 }

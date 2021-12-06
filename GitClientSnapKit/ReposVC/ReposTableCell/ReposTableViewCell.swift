@@ -55,16 +55,6 @@ final class ReposTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let descriptLabel: CustomLabel = {
-        let label = CustomLabel()
-        label.configure(with: .systemFont(ofSize: 16),
-                        color: .black,
-                        textAlignment: .left,
-                        ofLine: 0
-        )
-        return label
-    }()
-    
     private let languageLabel: CustomLabel = {
         let label = CustomLabel()
         label.configure(with: .boldSystemFont(ofSize: 15),
@@ -91,6 +81,16 @@ final class ReposTableViewCell: UITableViewCell {
                         color: #colorLiteral(red: 0.462745098, green: 0.6235294118, blue: 0.8039215686, alpha: 1),
                         textAlignment: .center,
                         ofLine: 1
+        )
+        return label
+    }()
+    
+    private let descriptLabel: CustomLabel = {
+        let label = CustomLabel()
+        label.configure(with: .systemFont(ofSize: 16),
+                        color: .black,
+                        textAlignment: .left,
+                        ofLine: 0
         )
         return label
     }()
@@ -128,11 +128,13 @@ extension ReposTableViewCell {
     func initialize() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
+        selectedBackgroundView?.layer.cornerRadius = 10
         addingSubview()
         setConstraints()
     }
     
     func addingSubview() {
+        contentView.addSubview(containerView)
         containerView.addSubview(imagesView)
         containerView.addSubview(loginLabel)
         containerView.addSubview(nameContentLabel)
@@ -141,7 +143,6 @@ extension ReposTableViewCell {
         containerView.addSubview(forkLabel)
         containerView.addSubview(starLabel)
         containerView.addSubview(descriptLabel)
-        contentView.addSubview(containerView)
     }
     
     func setConstraints() {

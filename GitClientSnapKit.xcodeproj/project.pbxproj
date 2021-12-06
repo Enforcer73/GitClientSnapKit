@@ -23,6 +23,7 @@
 		C2170BDB2757542E000C32D3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2170BDA2757542E000C32D3 /* FavoriteViewController.swift */; };
 		C2170BDD27575465000C32D3 /* DetailFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2170BDC27575465000C32D3 /* DetailFavoriteViewController.swift */; };
 		C237C4B32758E4DB00B9479C /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C237C4B22758E4DB00B9479C /* DetailTableViewCell.swift */; };
+		C25B9C2A275CC00A00DB9D46 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B9C29275CC00A00DB9D46 /* Database.swift */; };
 		C2A7813A2757BE3E001892F0 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A781392757BE3E001892F0 /* CustomLabel.swift */; };
 		C8D7DAF0BDB344CAB2C8F0B7 /* Pods_GitClientSnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35468AE7F3F6056C267FDED7 /* Pods_GitClientSnapKit.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		C2170BDA2757542E000C32D3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		C2170BDC27575465000C32D3 /* DetailFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFavoriteViewController.swift; sourceTree = "<group>"; };
 		C237C4B22758E4DB00B9479C /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		C25B9C29275CC00A00DB9D46 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		C2A781392757BE3E001892F0 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		DCA50291DC987918BB4AA594 /* Pods-GitClientSnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitClientSnapKit.release.xcconfig"; path = "Target Support Files/Pods-GitClientSnapKit/Pods-GitClientSnapKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,10 +120,11 @@
 		C2170BBF27574D63000C32D3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C2170BC427574F9C000C32D3 /* TabBarController.swift */,
 				C2170BC627574FFE000C32D3 /* CustomButton.swift */,
 				C2A781392757BE3E001892F0 /* CustomLabel.swift */,
+				C25B9C29275CC00A00DB9D46 /* Database.swift */,
 				C2170BC827575085000C32D3 /* Extension + UITextField.swift */,
+				C2170BC427574F9C000C32D3 /* TabBarController.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -147,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				C2170BD72757536D000C32D3 /* ReposTableCell */,
-				C2170BD3275752D1000C32D3 /* ReposViewController.swift */,
 				C2170BD527575312000C32D3 /* DetailViewController.swift */,
+				C2170BD3275752D1000C32D3 /* ReposViewController.swift */,
 			);
 			path = ReposVC;
 			sourceTree = "<group>";
@@ -156,8 +159,8 @@
 		C2170BCD27575199000C32D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C2170BCE275751C6000C32D3 /* TableReposModel.swift */,
 				C2170BD0275751E7000C32D3 /* TableDetailModel.swift */,
+				C2170BCE275751C6000C32D3 /* TableReposModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,8 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				C2170BDE27575497000C32D3 /* FavoriteTableCell */,
-				C2170BDA2757542E000C32D3 /* FavoriteViewController.swift */,
 				C2170BDC27575465000C32D3 /* DetailFavoriteViewController.swift */,
+				C2170BDA2757542E000C32D3 /* FavoriteViewController.swift */,
 			);
 			path = FavoriteVC;
 			sourceTree = "<group>";
@@ -175,8 +178,8 @@
 		C2170BD72757536D000C32D3 /* ReposTableCell */ = {
 			isa = PBXGroup;
 			children = (
-				C2170BD82757539B000C32D3 /* ReposTableViewCell.swift */,
 				C237C4B22758E4DB00B9479C /* DetailTableViewCell.swift */,
+				C2170BD82757539B000C32D3 /* ReposTableViewCell.swift */,
 			);
 			path = ReposTableCell;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				C2170BDB2757542E000C32D3 /* FavoriteViewController.swift in Sources */,
 				C2170BAE27574B4D000C32D3 /* SceneDelegate.swift in Sources */,
 				C2170BC727574FFE000C32D3 /* CustomButton.swift in Sources */,
+				C25B9C2A275CC00A00DB9D46 /* Database.swift in Sources */,
 				C2170BD92757539B000C32D3 /* ReposTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
